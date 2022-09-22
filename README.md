@@ -35,3 +35,33 @@ db.BlogsDB.find({
     }
 
  // No records found
+
+
+
+//*******************PART 2******************* */
+//Write the following queries and add them to the README:
+// ************************Find all blogs where the field lastModified exists *************************//
+db.BlogsDB.find({
+lastModified:{
+}
+    })
+ 
+
+
+
+//***************************Find all blogs where the createdAt type is a date****************************//
+db.BlogsDB.find({
+    createdAt:{
+    $eq:  Date(“ ”)
+    }
+
+
+//***********************Find a blog with a specific phrase in the text************************** */
+db.BlogsDB.findOne({})
+
+
+//*********************************Find all blogs that have "qui" in the categories array*/
+db.BlogsDB.find({
+    categories:{
+    $eq:  [“qui”]
+    }
