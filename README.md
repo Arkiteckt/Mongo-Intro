@@ -65,3 +65,51 @@ db.BlogsDB.find({
     categories:{
     $eq:  [“qui”]
     }
+    
+    
+    
+    
+   //*******************PART 3******************* */
+// - Write the following queries and add them to the README:
+//**************************Find all blogs in which the lastModified does not exist and set it*********************************
+db.BlogsDB.find({
+    lastModified:{
+    $exist: false
+    }
+})
+//From now on, all the following queries should update lastModified to be the current datetime ***********************************
+
+
+// ********************** Find all blogs created after May 2022 and add "lorem" as a new category in the categories array********************** 
+db.BlogsDB.find({
+    DateAdded:{
+        $gt:  Date(“May 2022”)
+        })
+
+db.Blogs.updateOne({
+    id: "categories"
+},{
+    $set:{ categories: "lorem"
+ }
+})
+
+//**********************Find all blogs that have the category "voluptas" and pull "voluptas" from the categories**********************
+db.BlogsDB.find({
+    categories:{
+        $eq:  categories["voluptas"]
+    },{
+        $pull: {
+            categories: ["voluptas"]
+        }
+    })
+// **********************Find all blogs with "corrupti" in the categories and delete those blogs**********************
+db.BlogsDB.find({
+    categories:{
+        $eq:  categories["corrupti"]
+    },{
+        db.BlogsDB.deleteOne({
+            id: "corrupti"
+        })
+    })   
+    
+    
